@@ -1,0 +1,17 @@
+
+void    ft_recursive(char **map, int x, int y, t_m *s_m)
+{
+    if (map[x][y] == '1' || map[x][y] == 'X' || s_m->collect == 0)
+        return ;
+    else if (map[x][y] == 'C' || map[x][y] == 'E')
+        s_m->collect--;
+    map[x][y] = 'X';
+    if (map[x][y + 1] != '1' || map[x][y] != 'X')
+        ft_recursive(map, x, y + 1, s_m);
+    if (map[x][y - 1] != '1' || map[x][y] != 'X')
+        ft_recursive(map, x, y - 1, s_m);
+    if (map[x - 1][y] != '1' || map[x][y] != 'X')
+        ft_recursive(map, x - 1, y, s_m);
+    if (map[x + 1][y] != '1' || map[x][y] != 'X')
+        ft_recursive(map, x + 1, y, s_m);
+}
